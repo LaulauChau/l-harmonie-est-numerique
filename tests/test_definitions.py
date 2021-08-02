@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+Test des fonctions du modules sample/definitions
+"""
 from .context import definitions
 
 

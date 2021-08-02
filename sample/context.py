@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+"""
+Contexte d'importation
+"""
 import sys
 import os
 
