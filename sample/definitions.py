@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+Fonctions de base définissant les éléments nécessaires aux opérations sur les notes.
+
+Fonctions:
+    calc_frequency: associe chaque note à une fréquence
+    calc_duration: associe chaque figure à durée
+    read_line_file: lis une ligne d'un fichier partition
+    read_sheet: extrait les notes et durées d'une ligne
+"""
 from collections.abc import Sequence
 
 
