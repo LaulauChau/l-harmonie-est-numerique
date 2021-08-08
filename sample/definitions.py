@@ -34,13 +34,13 @@ def calc_duration(figures: list[str], d0: int) -> dict[str, int]:
     Retour:
         Dictionnaire de figure et durée
     """
-    figure_duree = {}
+    figure = iter(figures)
 
-    for figure in figures:
-        figure_duree.setdefault(figure, d0)
-        d0 += d0
-
-    return figure_duree
+    return {
+        next(figure): d0 * duree
+        for duree in range(1, 10)
+        if duree == 1 or (duree % 2 == 0 and duree != 6)
+    }
 
 
 def read_line_file(f: str, num: int) -> str:
@@ -54,7 +54,7 @@ def read_line_file(f: str, num: int) -> str:
         Contenu de la ligne
     """
     with open(f) as fichier:
-        for num_ligne in range(num):
+        for _ in range(num):
             ligne = fichier.readline()
 
             if not ligne:
