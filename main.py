@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from sample import lectures
+from sample import ecritures
 
 
 if __name__ == "__main__":
-    lectures.lecture_utilisateur()
+    print(ecritures.markov_2(10))
