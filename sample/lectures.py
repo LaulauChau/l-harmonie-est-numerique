@@ -1,8 +1,24 @@
+# -*- coding: utf-8 -*-
+"""
+Lecture d'une partition.
+
+Fonctions:
+    lecture_systeme: lecture du fichier partition existant dans le dossier
+    lecture_utilisateur: lecture du fichier partition fourni par l'utilisateur
+"""
 import os.path
 from .context import definitions, transformations
 
 
-def lecture_systeme(nom_partition="docs/partitions/partitions.txt"):
+def lecture_systeme(nom_partition: str = "docs/partitions/partitions.txt") -> None:
+    """Lis une partition dans le fichier.
+
+    Arg:
+        nom_partition: nom du fichier contenant les partitions
+
+    Retour:
+        None
+    """
     nb_ligne = 0
 
     print("Choisissez une partition parmi : ")
@@ -23,6 +39,14 @@ def lecture_systeme(nom_partition="docs/partitions/partitions.txt"):
 
 
 def lecture_utilisateur():
+    """Lis une partition dans un fichier fournis par l'utilisateur.
+
+    Arg:
+        None
+
+    Retour:
+        None
+    """
     print(
         "Mettez votre fichier partition dans docs/partition et verifier que c'est un fichier texte (.txt)"
     )
