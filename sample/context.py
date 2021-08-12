@@ -11,3 +11,4 @@ from sample import definitions
 from sample import transformations
 from sample import lectures
 from sample import ecritures
+from sample import interface
