@@ -9,6 +9,11 @@ Fonctions:
     read_sheet: extrait les notes et durées d'une ligne
 """
 from collections.abc import Sequence
+import numpy as np
+import random
+import simpleaudio as sa
+from time import sleep
+import turtle as tr
 
 
 def calc_frequency(notes: list[str], frequences: list) -> dict[str, int]:
@@ -88,6 +93,46 @@ def read_sheet(ligne: str) -> Sequence[list[int], list[str]]:
             seq_duree.append(fig_duree[note[-1]])
 
     return seq_freq, seq_duree
+
+
+def sound(freq, duration):
+    # get timesteps for each sample, "duration" is note duration in seconds
+    sample_rate = 44100
+    t = np.linspace(0.0, duration, num=int(duration * sample_rate), endpoint=False)
+    # generate sine wave tone
+    tone = np.sin(freq * t * (6) * np.pi)
+    # normalize to 24-bit range
+    # convert to 32-bit data
+    # tone = tone.astype(np.int32)
+    tone *= 8388607 / np.max(np.abs(tone))
+    tone = tone.astype(np.int32)
+    byte_array = [b for i, b in enumerate(tone.tobytes()) if i % 4 != 3]
+    audio = bytearray(byte_array)
+    # start playback
+    play_obj = sa.play_buffer(audio, 1, 3, sample_rate)
+    # wait for playback to finish before exiting
+    play_obj.wait_done()
+
+
+def play_sheet(duration_sheet, freq_sheet):
+    t = tr.Pen()
+    tr.bgcolor("black")
+    colors = ["red", "purple", "blue", "green", "orange", "yellow"]
+    x = 0
+    for d, note in enumerate(freq_sheet):
+        if note == -1:
+            sleep(abs(int(duration_sheet[d] / 1000)))
+        else:
+            # winsound.Beep(int(note), int(duration_sheet[d]))
+            # print(note, duration_sheet[d] / 1000)
+            sound(note, duration_sheet[d] / 1000)
+        tr.up()
+        tr.pencolor(colors[x % 6])
+        tr.width(x / 100 + 1)
+        tr.down()
+        tr.forward(x)
+        tr.left(59)
+        x = (x + 1) % 360
 
 
 notes = ["DO", "RE", "MI", "FA", "SOL", "LA", "SI"]
