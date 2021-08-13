@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from sample import ecritures
+from sample import interface
 
 
 if __name__ == "__main__":
-    print(ecritures.markov_2(10))
+    interface.interface()
