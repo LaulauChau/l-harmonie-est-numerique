@@ -92,6 +92,22 @@ def interface() -> None:
         if lecture:
             definitions.play_sheet(seq_duree, transfo_freq)
     elif choix == 5:
-        pass
+        print(
+            "Mettez votre fichier partition dans docs/partition et verifier que c'est un fichier texte (.txt)"
+        )
+        fichier_name = str(input("Entrez le nom de votre fichier : "))
+        fichier_name = "docs/partitions/" + fichier_name
+
+        if not os.path.isfile(partition):
+            print("Le fichier n'existe pas")
+        else:
+            ecritures.ajout_partition(fichier_name)
     else:
         print("Choix incorrect !\n")
+
+    recommencer = int(input("Voulez-vous revenir au menu ? (1/0) "))
+
+    if recommencer:
+        interface()
+    else:
+        print("Au revoir !\n")

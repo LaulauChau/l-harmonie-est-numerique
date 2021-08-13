@@ -50,7 +50,7 @@ def lecture_utilisateur():
     print(
         "Mettez votre fichier partition dans docs/partition et verifier que c'est un fichier texte (.txt)"
     )
-    partition = str(input("Entrez le nom de votre partition : "))
+    partition = str(input("Entrez le nom de votre fichier : "))
     partition = "docs/partitions/" + partition
 
     if not os.path.isfile(partition):
@@ -60,6 +60,15 @@ def lecture_utilisateur():
 
 
 def lecture_transfo(transfo_freq: list[int], seq_duree: list[float]) -> None:
+    """Lecture d'une partition transformee.
+
+    Arg:
+        transfo_freq: partition transformee
+        seq_duree: sequence de duree originale
+
+    Retour:
+        None
+    """
     freq_note = {
         frequence: note
         for note, frequence in definitions.calc_frequency(
