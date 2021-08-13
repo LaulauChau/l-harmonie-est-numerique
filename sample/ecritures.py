@@ -5,6 +5,7 @@ Ecriture d'une partition.
 Fonctions:
     markov_1: Utilisation des chaines de Markov sur une partition
     markov_2: Utilisation des chaines de Markov sur l'ensemble des partitions
+    ajout_partition: Ajouter une partition a la base de donnee
 """
 import random
 from .context import definitions, transformations, lectures
