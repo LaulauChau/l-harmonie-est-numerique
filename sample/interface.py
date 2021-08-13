@@ -15,11 +15,11 @@ def interface() -> None:
         None
     """
     print("Choisissez parmi :")
-    print("\t1. Lecture d'une des partitions de la base de donnee\n")
-    print("\t2. Lecture d'une de vos partitions\n")
-    print("\t3. Transformation d'une partition\n")
-    print("\t4. Composition d'une nouvelle partition\n")
-    print("\t5. Enrichir la base de donnee avec de nouvelles partitions\n")
+    print("\t1. Lecture d'une des partitions de la base de donnee")
+    print("\t2. Lecture d'une de vos partitions")
+    print("\t3. Transformation d'une partition")
+    print("\t4. Composition d'une nouvelle partition")
+    print("\t5. Enrichir la base de donnee avec de nouvelles partitions")
     choix = int(input("Choix : "))
 
     if choix == 1:
@@ -28,8 +28,8 @@ def interface() -> None:
         lectures.lecture_utilisateur()
     elif choix == 3:
         print("Choisissez parmi :")
-        print("\t1. Transposition\n")
-        print("\t2. Inversion\n")
+        print("\t1. Transposition")
+        print("\t2. Inversion")
         choix_transfo = int(input("Choix : "))
 
         print("Choisissez parmi :")
@@ -41,25 +41,27 @@ def interface() -> None:
         ligne = definitions.read_line_file(
             "docs/partitions/partitions.txt", choix_partition * 2
         )
-        seq_freq, duree_seq = definitions.read_sheet(ligne)
+        seq_freq, seq_duree = definitions.read_sheet(ligne)
 
-        if choix == 1:
+        if choix_transfo == 1:
             k = int(input("De combien voulez-vous transposer ? "))
             transfo_freq = transformations.transposition(seq_freq, k)
-            # afficher transfo_freq
+            print("Partition transposee : ")
+            lectures.lecture_transfo(transfo_freq, seq_duree)
         else:
             transfo_freq = transformations.inversion(seq_freq)
-            # afficher transfo_freq
+            print("Partition inversee : ")
+            lectures.lecture_transfo(transfo_freq, seq_duree)
 
         lecture = int(input("Voulez-vous la lire ? (1/0) "))
 
         if lecture:
-            definitions.play_sheet(duree_seq, transfo_freq)
+            definitions.play_sheet(seq_duree, transfo_freq)
     elif choix == 4:
         print("Choisissez parmi :")
-        print("\t1. Application des chaines de Markov sur une partition\n")
+        print("\t1. Application des chaines de Markov sur une partition")
         print(
-            "\t2. Application des chaines de Markov sur l'ensemble de la base de donnee\n"
+            "\t2. Application des chaines de Markov sur l'ensemble de la base de donnee"
         )
         choix_markov = int(input("Choix : "))
 
@@ -75,18 +77,20 @@ def interface() -> None:
             ligne = definitions.read_line_file(
                 "docs/partitions/partitions.txt", choix_partition * 2
             )
-            seq_freq, _ = definitions.read_sheet(ligne)
+            seq_freq, seq_duree = definitions.read_sheet(ligne)
 
             transfo_freq = ecritures.markov_1(seq_freq, len_partition)
-            # afficher transfo_freq
+            print("Nouvelle partition : ")
+            lectures.lecture_transfo(transfo_freq, seq_duree)
         else:
             transfo_freq = ecritures.markov_2(len_partition)
-            # afficher transfo_freq
+            print("Nouvelle partition : ")
+            lectures.lecture_transfo(transfo_freq, seq_duree)
 
         lecture = int(input("Voulez-vous la lire ? (1/0) "))
 
         if lecture:
-            definitions.play_sheet(duree_seq, transfo_freq)
+            definitions.play_sheet(seq_duree, transfo_freq)
     elif choix == 5:
         pass
     else:

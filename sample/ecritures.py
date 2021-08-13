@@ -10,7 +10,7 @@ import random
 from .context import definitions, transformations, lectures
 
 
-def markov_1(seq_freq: str, len_partition: int) -> str:
+def markov_1(seq_freq: list[int], len_partition: int) -> list[int]:
     """Utilisation des chaines de Markov sur une partition.
 
     Arg:
@@ -34,7 +34,7 @@ def markov_1(seq_freq: str, len_partition: int) -> str:
     ]
 
 
-def markov_2(len_partition: int) -> str:
+def markov_2(len_partition: int) -> list[int]:
     """Utilisation des chaines de Markov sur l'ensemble des partitions.
 
     Arg:

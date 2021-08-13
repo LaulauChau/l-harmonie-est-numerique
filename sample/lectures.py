@@ -57,3 +57,34 @@ def lecture_utilisateur():
         print("Le fichier n'existe pas")
     else:
         lecture_systeme(partition)
+
+
+def lecture_transfo(transfo_freq: list[int], seq_duree: list[float]) -> None:
+    freq_note = {
+        frequence: note
+        for note, frequence in definitions.calc_frequency(
+            definitions.notes, definitions.frequences
+        ).items()
+    }
+    duree_fig = {
+        duree: figure
+        for figure, duree in definitions.calc_duration(
+            definitions.figures, definitions.d0
+        ).items()
+    }
+
+    for note, duree in zip(transfo_freq, seq_duree):
+        if isinstance(duree, float):
+            for duration, next_duration in zip(
+                list(duree_fig.keys()), list(duree_fig.keys())[1:]
+            ):
+                if duration < duree and duree < next_duration:
+                    break
+
+            print(freq_note[note] + duree_fig[duration] + " p", end=" ")
+        elif note == -1:
+            print("Z" + duree_fig[abs(duree)], end=" ")
+        else:
+            print(freq_note[note] + duree_fig[duree], end=" ")
+
+    print()
