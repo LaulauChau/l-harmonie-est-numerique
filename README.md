@@ -6,6 +6,6 @@ Pour ce faire, on nous a fourni un fichier _partitions.txt_ contenant des partit
 ## Utilisation
 
 Durant la création du programme nous avons utilisé les bibliothèques **time**, **numpy**, **simpleaudio** et **random**.
-Pour utiliser le programme veuillez lancer le fichier **main.py**
+Pour utiliser le programme veuillez lancer le fichier **RUN.exe**
 
 Pour ajouter des partitions dans la base de données, utiliser le programme ou mettez les dans un fichier _.txt_ en ayant suivis la même syntaxe des fichiers partitions déjà existant. Puis mettez votre fichier dans **docs/partitions/**
